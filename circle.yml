@@ -5,4 +5,9 @@ test:
   override:
     - npm install -g yarn
     - yarn run bootstrap -- --concurrency=1
-    - yarn run ci
+    - yarn run build
+deployment:
+  builds:
+    branch: package-builds
+    commands:
+      - yarn run deploy:builds
