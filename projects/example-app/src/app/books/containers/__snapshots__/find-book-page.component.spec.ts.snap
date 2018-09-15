@@ -6,12 +6,10 @@ exports[`Find Book Page should compile 1`] = `
   error$={[Function Store]}
   loading$={[Function Store]}
   searchQuery$={[Function Store]}
-  store={[Function Store]}
+  store={[Function MockStore]}
 >
   <bc-book-search
     _nghost-c0=""
-    ng-reflect-error=""
-    ng-reflect-query=""
     ng-reflect-searching="false"
   >
     <mat-card
@@ -51,7 +49,6 @@ exports[`Find Book Page should compile 1`] = `
                   id="mat-input-0"
                   matinput=""
                   ng-reflect-placeholder="Search for a book"
-                  ng-reflect-value=""
                   placeholder="Search for a book"
                 />
                 <span
