@@ -92,6 +92,7 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.6.0",
+    "@bazel/typescript": "^0.20.2",
     "@types/fs-extra": "^2.1.0",
     "@types/glob": "^5.0.33",
     "@types/globby": "^8.0.0",

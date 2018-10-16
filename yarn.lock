@@ -219,6 +219,15 @@
   version "0.15.1"
   resolved "https://registry.yarnpkg.com/@bazel/typescript/-/typescript-0.15.1.tgz#9f5a934f56bba1b439f6338305fd5f6a853e5f87"
 
+"@bazel/typescript@^0.20.2":
+  version "0.20.2"
+  resolved "https://registry.yarnpkg.com/@bazel/typescript/-/typescript-0.20.2.tgz#7e31e2fe23458536e4917bf5ee130d55704c54f5"
+  dependencies:
+    protobufjs "5.0.0"
+    source-map-support "0.5.9"
+    tsickle "0.28.0"
+    tsutils "2.27.2"
+
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/@mrmlnc/readdir-enhanced/-/readdir-enhanced-2.2.1.tgz#524af240d1a360527b730475ecfa1344aa540dde"
@@ -7436,6 +7445,13 @@ source-map-resolve@^0.5.0:
     source-map-url "^0.4.0"
     urix "^0.1.0"
 
+source-map-support@0.5.9:
+  version "0.5.9"
+  resolved "https://registry.yarnpkg.com/source-map-support/-/source-map-support-0.5.9.tgz#41bc953b2534267ea2d605bccfa7bfa3111ced5f"
+  dependencies:
+    buffer-from "^1.0.0"
+    source-map "^0.6.0"
+
 source-map-support@^0.4.15, source-map-support@~0.4.0:
   version "0.4.18"
   resolved "https://registry.yarnpkg.com/source-map-support/-/source-map-support-0.4.18.tgz#0286a6de8be42641338594e97ccea75f0a2c585f"
@@ -8017,6 +8033,15 @@ tsconfig-paths@^3.1.3:
     strip-bom "^3.0.0"
     strip-json-comments "^2.0.1"
 
+tsickle@0.28.0:
+  version "0.28.0"
+  resolved "https://registry.yarnpkg.com/tsickle/-/tsickle-0.28.0.tgz#6cd6fa004766c6ad9261b599c83866ee97cc7875"
+  dependencies:
+    minimist "^1.2.0"
+    mkdirp "^0.5.1"
+    source-map "^0.6.0"
+    source-map-support "^0.5.0"
+
 tsickle@^0.30.0:
   version "0.30.0"
   resolved "https://registry.yarnpkg.com/tsickle/-/tsickle-0.30.0.tgz#7941146ae92933854a8742fa1047606c4536649b"
@@ -8065,6 +8090,12 @@ tslint@^5.0.0:
 tsutils@2.20.0:
   version "2.20.0"
   resolved "https://registry.yarnpkg.com/tsutils/-/tsutils-2.20.0.tgz#303394064bc80be8ee04e10b8609ae852e9312d3"
+  dependencies:
+    tslib "^1.8.1"
+
+tsutils@2.27.2:
+  version "2.27.2"
+  resolved "https://registry.yarnpkg.com/tsutils/-/tsutils-2.27.2.tgz#60ba88a23d6f785ec4b89c6e8179cac9b431f1c7"
   dependencies:
     tslib "^1.8.1"
 
