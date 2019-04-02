@@ -38,7 +38,7 @@ check_bazel_version(minimum_bazel_version = "0.24.0")
 
 node_repositories(
     node_version = "10.9.0",
-    yarn_version = "1.9.2",
+    yarn_version = "1.12.1",
 )
 
 yarn_install(

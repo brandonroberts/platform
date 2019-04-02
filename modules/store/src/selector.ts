@@ -61,7 +61,7 @@ export function defaultMemoize(
   // tslint:disable-next-line:no-any anything could be the result.
   function memoized(): any {
     if (!lastArguments) {
-      lastResult = projectionFn.apply(null, arguments);
+      lastResult = projectionFn.apply(null, arguments as any);
       lastArguments = arguments;
       return lastResult;
     }
@@ -72,7 +72,7 @@ export function defaultMemoize(
 
     lastArguments = arguments;
 
-    const newResult = projectionFn.apply(null, arguments);
+    const newResult = projectionFn.apply(null, arguments as any);
     if (isResultEqual(lastResult, newResult)) {
       return lastResult;
     }
