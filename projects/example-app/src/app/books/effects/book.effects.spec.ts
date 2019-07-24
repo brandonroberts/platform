@@ -12,6 +12,9 @@ import {
 import { BookEffects } from '@example-app/books/effects';
 import { Book } from '@example-app/books/models';
 import { GoogleBooksService } from '@example-app/core/services/google-books.service';
+import { provideMockStore } from '@ngrx/store/testing';
+import * as fromBooks from '@example-app/books/reducers/books.reducer';
+import * as fromSearch from '@example-app/books/reducers/search.reducer';
 
 describe('BookEffects', () => {
   let effects: BookEffects;
@@ -27,6 +30,14 @@ describe('BookEffects', () => {
           useValue: { searchBooks: jest.fn() },
         },
         provideMockActions(() => actions$),
+        provideMockStore({
+          initialState: {
+            books: {
+              [fromSearch.searchFeatureKey]: fromSearch.initialState,
+              [fromBooks.booksFeatureKey]: fromBooks.initialState,
+            },
+          },
+        }),
       ],
     });
 
@@ -41,10 +52,15 @@ describe('BookEffects', () => {
       const book2 = { id: '222', volumeInfo: {} } as Book;
       const books = [book1, book2];
       const action = FindBookPageActions.searchBooks({ query: 'query' });
-      const completion = BooksApiActions.searchSuccess({ books });
+      const completion = BooksApiActions.searchSuccess({
+        books,
+        page: 0,
+        perPage: 40,
+        total: books.length,
+      });
 
       actions$ = hot('-a---', { a: action });
-      const response = cold('-a|', { a: books });
+      const response = cold('-a|', { a: { books, total: books.length } });
       const expected = cold('-----b', { b: completion });
       googleBooksService.searchBooks = jest.fn(() => response);
 

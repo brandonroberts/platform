@@ -4,7 +4,7 @@ import { Book } from '@example-app/books/models';
 
 export const searchSuccess = createAction(
   '[Books/API] Search Success',
-  props<{ books: Book[] }>()
+  props<{ books: Book[]; total: number; page: number; perPage: number }>()
 );
 
 export const searchFailure = createAction(

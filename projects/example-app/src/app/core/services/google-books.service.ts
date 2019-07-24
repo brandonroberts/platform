@@ -14,10 +14,12 @@ export class GoogleBooksService {
 
   constructor(private http: HttpClient) {}
 
-  searchBooks(queryTitle: string): Observable<Book[]> {
+  searchBooks(queryTitle: string, page = 0, perPage = 40) {
+    const query = `orderBy=newest&q=${queryTitle}&maxResults=${perPage}&startIndex=${page}`;
+
     return this.http
-      .get<{ items: Book[] }>(`${this.API_PATH}?orderBy=newest&q=${queryTitle}`)
-      .pipe(map(books => books.items || []));
+      .get<{ totalItems: number; items: Book[] }>(`${this.API_PATH}?${query}`)
+      .pipe(map(({ totalItems: total, items: books }) => ({ books, total })));
   }
 
   retrieveBook(volumeId: string): Observable<Book> {

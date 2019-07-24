@@ -25,6 +25,7 @@ describe('Service: GoogleBooks', () => {
   };
 
   const books = {
+    totalItems: 2,
     items: [
       { id: '12345', volumeInfo: { title: 'Title' } },
       { id: '67890', volumeInfo: { title: 'Another Title' } },
@@ -35,12 +36,14 @@ describe('Service: GoogleBooks', () => {
 
   it('should call the search api and return the search results', () => {
     const response = cold('-a|', { a: books });
-    const expected = cold('-b|', { b: books.items });
+    const expected = cold('-b|', {
+      b: { books: books.items, total: books.totalItems },
+    });
     http.get = jest.fn(() => response);
 
     expect(service.searchBooks(queryTitle)).toBeObservable(expected);
     expect(http.get).toHaveBeenCalledWith(
-      `https://www.googleapis.com/books/v1/volumes?orderBy=newest&q=${queryTitle}`
+      `https://www.googleapis.com/books/v1/volumes?orderBy=newest&q=${queryTitle}&maxResults=40&startIndex=0`
     );
   });
 

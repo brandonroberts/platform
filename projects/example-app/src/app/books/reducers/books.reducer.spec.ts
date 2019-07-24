@@ -38,7 +38,12 @@ describe('BooksReducer', () => {
       booksInitialState: any,
       books: Book[]
     ) {
-      const createAction = action({ books });
+      const createAction = action({
+        books,
+        page: 0,
+        perPage: 40,
+        total: books.length,
+      });
 
       const result = reducer(booksInitialState, createAction);
 
@@ -52,7 +57,12 @@ describe('BooksReducer', () => {
     ) {
       // should not replace existing books
       const differentBook2 = { ...books[0], foo: 'bar' };
-      const createAction = action({ books: [books[1], differentBook2] });
+      const createAction = action({
+        books: [books[1], differentBook2],
+        page: 0,
+        perPage: 40,
+        total: 2,
+      });
 
       const expectedResult = {
         ids: [...booksInitialState.ids, books[1].id],

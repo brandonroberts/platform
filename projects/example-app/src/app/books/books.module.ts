@@ -11,6 +11,7 @@ import {
   BookPreviewComponent,
   BookPreviewListComponent,
   BookSearchComponent,
+  BookSearchPaginationComponent,
 } from '@example-app/books/components';
 import {
   CollectionPageComponent,
@@ -30,6 +31,7 @@ export const COMPONENTS = [
   BookPreviewComponent,
   BookPreviewListComponent,
   BookSearchComponent,
+  BookSearchPaginationComponent,
 ];
 
 export const CONTAINERS = [

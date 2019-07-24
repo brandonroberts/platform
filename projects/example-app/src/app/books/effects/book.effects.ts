@@ -9,14 +9,19 @@ import {
   skip,
   switchMap,
   takeUntil,
+  withLatestFrom,
+  concatMap,
+  tap,
+  first,
 } from 'rxjs/operators';
 
-import { Book } from '@example-app/books/models';
 import {
   BooksApiActions,
   FindBookPageActions,
 } from '@example-app/books/actions';
 import { GoogleBooksService } from '@example-app/core/services/google-books.service';
+import * as fromBooks from '../reducers';
+import { select, Store } from '@ngrx/store';
 
 /**
  * Effects offer a way to isolate and easily test side-effects within your
@@ -36,8 +41,8 @@ export class BookEffects {
       this.actions$.pipe(
         ofType(FindBookPageActions.searchBooks),
         debounceTime(debounce, scheduler),
-        switchMap(({ query }) => {
-          if (query === '') {
+        switchMap(action => {
+          if (action.query === '') {
             return empty;
           }
 
@@ -46,19 +51,62 @@ export class BookEffects {
             skip(1)
           );
 
-          return this.googleBooks.searchBooks(query).pipe(
-            takeUntil(nextSearch$),
-            map((books: Book[]) => BooksApiActions.searchSuccess({ books })),
-            catchError(err =>
-              of(BooksApiActions.searchFailure({ errorMsg: err.message }))
+          return of(action).pipe(
+            withLatestFrom(
+              this.store.pipe(select(fromBooks.getPerPage)).pipe(first())
+            ),
+            concatMap(([action, perPage]) =>
+              this.googleBooks.searchBooks(action.query, 0, perPage).pipe(
+                takeUntil(nextSearch$),
+                map(({ books, total }) =>
+                  BooksApiActions.searchSuccess({
+                    books,
+                    total,
+                    page: 0,
+                    perPage,
+                  })
+                ),
+                catchError(err =>
+                  of(BooksApiActions.searchFailure({ errorMsg: err.message }))
+                )
+              )
             )
           );
         })
       )
   );
 
+  changePage$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(FindBookPageActions.searchPageChange),
+      switchMap(action =>
+        of(action).pipe(
+          withLatestFrom(this.store.pipe(select(fromBooks.getSearchQuery))),
+          concatMap(([action, query]) =>
+            this.googleBooks
+              .searchBooks(query, action.page, action.perPage)
+              .pipe(
+                map(({ books, total }) =>
+                  BooksApiActions.searchSuccess({
+                    books,
+                    total,
+                    page: action.page,
+                    perPage: action.perPage,
+                  })
+                ),
+                catchError(err =>
+                  of(BooksApiActions.searchFailure({ errorMsg: err.message }))
+                )
+              )
+          )
+        )
+      )
+    )
+  );
+
   constructor(
     private actions$: Actions,
-    private googleBooks: GoogleBooksService
+    private googleBooks: GoogleBooksService,
+    private store: Store<fromBooks.State>
   ) {}
 }

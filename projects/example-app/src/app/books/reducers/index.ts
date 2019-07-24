@@ -122,6 +122,12 @@ export const getSearchError = createSelector(
   getSearchState,
   fromSearch.getError
 );
+export const getSearchTotal = createSelector(
+  getSearchState,
+  fromSearch.getTotal
+);
+export const getPage = createSelector(getSearchState, fromSearch.getPage);
+export const getPerPage = createSelector(getSearchState, fromSearch.getPerPage);
 
 /**
  * Some selector functions create joins across parts of state. This selector

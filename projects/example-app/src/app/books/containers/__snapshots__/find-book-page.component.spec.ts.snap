@@ -4,9 +4,13 @@ exports[`Find Book Page should compile 1`] = `
 <bc-find-book-page
   books$={[Function Store]}
   error$={[Function Store]}
+  initialQuery$={[Function Store]}
   loading$={[Function Store]}
+  page$={[Function Store]}
+  perPage$={[Function Store]}
   searchQuery$={[Function Store]}
   store={[Function MockStore]}
+  total$={[Function Store]}
 >
   <bc-book-search
     ng-reflect-error=""
@@ -129,7 +133,214 @@ exports[`Find Book Page should compile 1`] = `
         
       </mat-card-footer>
     </mat-card>
-  </bc-book-search><bc-book-preview-list
+  </bc-book-search><bc-book-search-pagination
+    ng-reflect-disabled="true"
+    ng-reflect-page="0"
+    ng-reflect-per-page="40"
+    ng-reflect-total="0"
+  >
+    <mat-paginator
+      class="mat-paginator"
+      ng-reflect-disabled="true"
+      ng-reflect-length="0"
+      ng-reflect-page-index="0"
+      ng-reflect-page-size="40"
+      ng-reflect-page-size-options="10,20,30,40"
+    >
+      <div
+        class="mat-paginator-outer-container"
+      >
+        <div
+          class="mat-paginator-container"
+        >
+          
+          <div
+            class="mat-paginator-page-size ng-star-inserted"
+          >
+            <div
+              class="mat-paginator-page-size-label"
+            >
+              Items per page:
+            </div>
+            
+            <mat-form-field
+              class="mat-paginator-page-size-select mat-form-field ng-tns-c1-1 mat-primary mat-form-field-type-mat-select mat-form-field-appearance-legacy mat-form-field-can-float mat-form-field-hide-placeholder mat-form-field-disabled _mat-animation-noopable ng-star-inserted"
+            >
+              <div
+                class="mat-form-field-wrapper"
+              >
+                <div
+                  class="mat-form-field-flex"
+                >
+                  
+                  
+                  <div
+                    class="mat-form-field-infix"
+                  >
+                    <mat-select
+                      aria-disabled="true"
+                      aria-invalid="false"
+                      aria-label="Items per page:"
+                      aria-multiselectable="false"
+                      aria-required="false"
+                      class="mat-select ng-tns-c4-2 mat-select-disabled mat-select-empty ng-star-inserted"
+                      id="mat-select-0"
+                      ng-reflect-aria-label="Items per page:"
+                      ng-reflect-disabled="true"
+                      ng-reflect-value="40"
+                      role="listbox"
+                      tabindex="-1"
+                    >
+                      <div
+                        aria-hidden="true"
+                        cdk-overlay-origin=""
+                        class="mat-select-trigger"
+                      >
+                        <div
+                          class="mat-select-value"
+                          ng-reflect-ng-switch="true"
+                        >
+                          
+                          <span
+                            class="mat-select-placeholder ng-tns-c4-2 ng-star-inserted"
+                          >
+                             
+                          </span>
+                          
+                        </div>
+                        <div
+                          class="mat-select-arrow-wrapper"
+                        >
+                          <div
+                            class="mat-select-arrow"
+                          />
+                        </div>
+                      </div>
+                      
+                    </mat-select>
+                    <span
+                      class="mat-form-field-label-wrapper"
+                    >
+                      
+                    </span>
+                  </div>
+                  
+                </div>
+                
+                <div
+                  class="mat-form-field-underline ng-tns-c1-1 ng-star-inserted"
+                >
+                  <span
+                    class="mat-form-field-ripple"
+                  />
+                </div>
+                <div
+                  class="mat-form-field-subscript-wrapper"
+                  ng-reflect-ng-switch="hint"
+                >
+                  
+                  
+                  <div
+                    class="mat-form-field-hint-wrapper ng-tns-c1-1 ng-trigger ng-trigger-transitionMessages ng-star-inserted"
+                    style="opacity:1;transform:translateY(0%);0:opacity;1:transform;"
+                  >
+                    
+                    <div
+                      class="mat-form-field-hint-spacer"
+                    />
+                  </div>
+                </div>
+              </div>
+            </mat-form-field>
+            
+          </div>
+          <div
+            class="mat-paginator-range-actions"
+          >
+            <div
+              class="mat-paginator-range-label"
+            >
+              0 of 0
+            </div>
+            
+            <button
+              aria-describedby="cdk-describedby-message-0"
+              aria-label="Previous page"
+              cdk-describedby-host=""
+              class="mat-paginator-navigation-previous mat-icon-button _mat-animation-noopable"
+              disabled="true"
+              mat-icon-button=""
+              ng-reflect-disabled="true"
+              ng-reflect-message="Previous page"
+              ng-reflect-position="above"
+              type="button"
+            >
+              <span
+                class="mat-button-wrapper"
+              >
+                <svg
+                  class="mat-paginator-icon"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"
+                  />
+                </svg>
+              </span>
+              <div
+                class="mat-button-ripple mat-ripple mat-button-ripple-round"
+                matripple=""
+                ng-reflect-centered="true"
+                ng-reflect-disabled="true"
+                ng-reflect-trigger="[object HTMLButtonElement]"
+              />
+              <div
+                class="mat-button-focus-overlay"
+              />
+            </button>
+            <button
+              aria-describedby="cdk-describedby-message-1"
+              aria-label="Next page"
+              cdk-describedby-host=""
+              class="mat-paginator-navigation-next mat-icon-button _mat-animation-noopable"
+              disabled="true"
+              mat-icon-button=""
+              ng-reflect-disabled="true"
+              ng-reflect-message="Next page"
+              ng-reflect-position="above"
+              type="button"
+            >
+              <span
+                class="mat-button-wrapper"
+              >
+                <svg
+                  class="mat-paginator-icon"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"
+                  />
+                </svg>
+              </span>
+              <div
+                class="mat-button-ripple mat-ripple mat-button-ripple-round"
+                matripple=""
+                ng-reflect-centered="true"
+                ng-reflect-disabled="true"
+                ng-reflect-trigger="[object HTMLButtonElement]"
+              />
+              <div
+                class="mat-button-focus-overlay"
+              />
+            </button>
+            
+          </div>
+        </div>
+      </div>
+    </mat-paginator>
+  </bc-book-search-pagination><bc-book-preview-list
     ng-reflect-books=""
   >
     

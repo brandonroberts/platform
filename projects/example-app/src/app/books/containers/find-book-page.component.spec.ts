@@ -7,6 +7,7 @@ import {
   MatCardModule,
   MatInputModule,
   MatProgressSpinnerModule,
+  MatPaginatorModule,
 } from '@angular/material';
 import { Store } from '@ngrx/store';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
@@ -17,6 +18,7 @@ import {
   BookPreviewComponent,
   BookPreviewListComponent,
   BookSearchComponent,
+  BookSearchPaginationComponent,
 } from '@example-app/books/components';
 import { FindBookPageComponent } from '@example-app/books/containers';
 import * as fromBooks from '@example-app/books/reducers';
@@ -37,6 +39,7 @@ describe('Find Book Page', () => {
         MatCardModule,
         MatProgressSpinnerModule,
         ReactiveFormsModule,
+        MatPaginatorModule,
       ],
       declarations: [
         FindBookPageComponent,
@@ -44,6 +47,7 @@ describe('Find Book Page', () => {
         BookPreviewComponent,
         BookPreviewListComponent,
         BookAuthorsComponent,
+        BookSearchPaginationComponent,
         AddCommasPipe,
         EllipsisPipe,
       ],
@@ -54,6 +58,9 @@ describe('Find Book Page', () => {
             { selector: fromBooks.getSearchResults, value: [] },
             { selector: fromBooks.getSearchLoading, value: false },
             { selector: fromBooks.getSearchError, value: '' },
+            { selector: fromBooks.getPage, value: 0 },
+            { selector: fromBooks.getPerPage, value: 40 },
+            { selector: fromBooks.getSearchTotal, value: 0 },
           ],
         }),
       ],
