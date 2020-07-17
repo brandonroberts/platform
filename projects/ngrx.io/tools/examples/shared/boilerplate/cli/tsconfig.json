@@ -11,5 +11,18 @@
     "skipLibCheck": true,
     "typeRoots": ["node_modules/@types"],
     "lib": ["es2017", "dom"]
-  }
+  },
+  "files": [],
+  "include": [],
+  "references": [
+    {
+      "path": "./e2e/tsconfig.e2e.json"
+    },
+    {
+      "path": "./src/tsconfig.app.json"
+    },
+    {
+      "path": "./src/tsconfig.spec.json"
+    }
+  ]
 }

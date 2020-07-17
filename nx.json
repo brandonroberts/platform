@@ -77,5 +77,8 @@
         "component-store"
       ]
     }
+  },
+  "affected": {
+    "defaultBase": "master"
   }
 }
